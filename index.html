@@ -20,8 +20,7 @@
     
     <!-- เพิ่ม Firebase SDK -->
     <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
     
     <!-- เพิ่ม Chart.js -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -742,23 +741,23 @@
     <!-- Navigator Bar - ปรับปรุงให้สวยงามเหมือนหน้า Welcome -->
     <div id="main-navigator" class="max-w-7xl mx-auto mb-4 navigator-bar">
         <div class="navigator-buttons">
-            <button onclick="switchView('welcome')" class="navigator-btn">
-                <i class="fas fa-home mr-2"></i> หน้าแรก
-            </button>
-            <button onclick="switchView('dashboard')" class="navigator-btn">
-                <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
-            </button>
-            <button onclick="switchView('form')" class="navigator-btn">
+            <button onclick="switchView('form')" class="navigator-btn active">
                 <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
-            </button>
-            <button onclick="switchView('results')" class="navigator-btn">
-                <i class="fas fa-chart-bar mr-2"></i> ผลสำรวจ
             </button>
             <button onclick="switchView('analysis')" class="navigator-btn">
                 <i class="fas fa-calculator mr-2"></i> วิเคราะห์คะแนน
             </button>
+            <button onclick="switchView('results')" class="navigator-btn">
+                <i class="fas fa-chart-bar mr-2"></i> ผลสำรวจ
+            </button>
+            <button onclick="switchView('dashboard')" class="navigator-btn">
+                <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
+            </button>
             <button onclick="switchView('admin-login')" class="navigator-btn">
                 <i class="fas fa-cog mr-2"></i> Admin
+            </button>
+            <button onclick="switchView('about')" class="navigator-btn">
+                <i class="fas fa-info-circle mr-2"></i> เกี่ยวกับ
             </button>
         </div>
     </div>
@@ -786,231 +785,8 @@
         </header>
         
         <main class="p-4 sm:p-6 md:p-8">
-            <!-- Welcome Section -->
-            <div id="welcome-section">
-                <!-- Hero Section -->
-                <div class="relative bg-gradient-to-b from-indigo-50 via-white to-gray-50 pt-12 pb-16 lg:pt-16 lg:pb-20 rounded-xl mb-8">
-                    <div class="container mx-auto px-6 text-center">
-                        <!-- ปรับขนาดหัวข้อหลักให้ใหญ่ขึ้น -->
-                        <h2 class="mt-12 text-3xl lg:text-4xl font-bold text-gray-800">
-                            ยินดีต้อนรับเข้าสู่ "ระบบสำรวจคะแนน"
-                        </h2>
-                        
-                        <!-- ปรับขนาดข้อความย่อหน้าข้างล่างให้ใหญ่ขึ้น -->
-                        <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-                            ผู้ปกครองโปรดกรอกข้อมูลตามความจริง เพื่อเป็นฐานข้อมูลสำหรับวิเคราะห์แนวโน้มผลการสอบ และเก็บเป็นสถิติ ข้อมูลนี้จะช่วยให้น้อง ๆ ที่กำลังเตรียมสอบเข้า ม.1 ได้เห็นแนวทางมากขึ้นค่ะ
-                        </p>
-                    </div>
-                </div>
-
-                <!-- ส่วนคุณสมบัติของระบบ (Introduction Section) -->
-                <section id="features" class="bg-white py-12 lg:py-16 rounded-xl">
-                    <div class="container mx-auto px-6">
-                        <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">
-                            รายละเอียดระบบแบบสำรวจ
-                        </h3>
-                        
-                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                            
-                            <!-- Feature Card 1 -->
-                            <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                                <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 rounded-full mx-auto mb-6">
-                                    <!-- ไอคอน: ระบบการเก็บข้อมูล -->
-                                    <svg class="w-8 h-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M19 16.9A7 7 0 0 1 5 16.9"/>
-                                        <path d="M12 3v14"/>
-                                        <path d="M12 20.9a7 7 0 0 1 0-13.8 7 7 0 0 1 0 13.8z"/>
-                                        <path d="M19 16.9a7 7 0 0 1 0-7.8"/>
-                                        <path d="M5 16.9a7 7 0 0 0 0-7.8"/>
-                                    </svg>
-                                </div>
-                                <h4 class="text-2xl font-semibold text-center text-indigo-800 mb-3">
-                                    เก็บข้อมูลเป็นระบบ
-                                </h4>
-                                <p class="text-gray-600 text-center">
-                                    เก็บข้อมูลคะแนน Pre-Test อย่างเป็นระบบ เพื่อความสะดวกในการค้นหาและประมวลผล
-                                </p>
-                            </div>
-
-                            <!-- Feature Card 2 -->
-                            <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                                <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 rounded-full mx-auto mb-6">
-                                    <!-- ไอคอน: การวิเคราะห์ -->
-                                    <svg class="w-8 h-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <path d="M21 12c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/>
-                                        <path d="M10 12c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/>
-                                        <path d="M12 21c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>
-                                        <path d="M12 10c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>
-                                    </svg>
-                                </div>
-                                <h4 class="text-2xl font-semibold text-center text-indigo-800 mb-3">
-                                    วิเคราะห์จุดแข็ง-จุดที่ควรเสริม
-                                </h4>
-                                <p class="text-gray-600 text-center">
-                                    สรุปผลรวมประเมินคะแนน และวิเคราะห์จุดแข็ง–จุดที่ควรเสริมรายวิชา เพื่อการพัฒนาที่ตรงจุด
-                                </p>
-                            </div>
-
-                            <!-- Feature Card 3 -->
-                            <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
-                                <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 rounded-full mx-auto mb-6">
-                                    <!-- ไอคอน: Dashboard -->
-                                    <svg class="w-8 h-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                                        <rect width="7" height="9" x="3" y="3" rx="1"/>
-                                        <rect width="7" height="5" x="14" y="3" rx="1"/>
-                                        <rect width="7" height="9" x="14" y="12" rx="1"/>
-                                        <rect width="7" height="5" x="3" y="16" rx="1"/>
-                                    </svg>
-                                </div>
-                                <h4 class="text-2xl font-semibold text-center text-indigo-800 mb-3">
-                                    Dashboard 
-                                </h4>
-                                <p class="text-gray-600 text-center">
-                                    แสดง Dashboard สรุปผลคะแนนแบบเรียลไทม์ เห็นภาพรวมและแนวโน้มคะแนนได้ทันที
-                                </p>
-                            </div>
-                            
-                        </div>
-                    </div>
-                </section>
-                
-                <!-- Navigator สำหรับหน้าแรก -->
-                <div class="flex flex-wrap justify-center gap-4 mt-12">
-                    <button onclick="switchView('dashboard')" class="btn btn-primary">
-                        <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
-                    </button>
-                    <button onclick="switchView('form')" class="btn btn-success">
-                        <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
-                    </button>
-                    <button onclick="switchView('results')" class="btn btn-secondary">
-                        <i class="fas fa-chart-bar mr-2"></i> ผลสำรวจ
-                    </button>
-                    <button onclick="switchView('analysis')" class="btn btn-warning">
-                        <i class="fas fa-calculator mr-2"></i> วิเคราะห์คะแนน
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Connection Status -->
-            <div id="connection-status" class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 text-yellow-800 rounded-r-lg hidden">
-                <div class="flex justify-between items-center">
-                    <div>
-                        <i class="fas fa-exclamation-triangle mr-2"></i>
-                        <span id="connection-status-text">กำลังตรวจสอบการเชื่อมต่อกับ Firebase...</span>
-                    </div>
-                    <button onclick="testConnection()" class="btn btn-secondary text-sm">
-                        <i class="fas fa-sync-alt mr-1"></i> ทดสอบการเชื่อมต่อ
-                    </button>
-                </div>
-            </div>
-            
-            <!-- Tabs -->
-            <div class="flex flex-wrap justify-center border-b mb-6 space-x-2 sm:space-x-4 hidden" id="main-tabs">
-                <button id="tab-dashboard" class="tab-button" onclick="switchView('dashboard')"><i class="fas fa-chart-pie mr-2"></i>แดชบอร์ดและสรุปผล</button>
-                <button id="tab-form" class="tab-button" onclick="switchView('form')"><i class="fas fa-edit mr-2"></i>กรอกข้อมูล</button>
-                <button id="tab-results" class="tab-button" onclick="switchView('results')"><i class="fas fa-chart-bar mr-2"></i>ดูผลสำรวจรวม</button>
-                <button id="tab-analysis" class="tab-button" onclick="switchView('analysis')"><i class="fas fa-calculator mr-2"></i>วิเคราะห์คะแนน</button>
-                <button id="tab-admin" class="tab-button" onclick="switchView('admin-login')"><i class="fas fa-cog mr-2"></i>Admin</button>
-            </div>
-
-            <!-- Success Message -->
-            <div id="success-message" class="success-message hidden">
-                <i class="fas fa-check-circle text-3xl sm:text-4xl mb-4 text-green-600"></i>
-                <h3 class="text-xl sm:text-2xl font-bold mb-4">ส่งข้อมูลสำเร็จ! 🎉</h3>
-                <p class="mb-4 text-base sm:text-lg">ขอบคุณที่ร่วมแบ่งปันข้อมูลคะแนน 🙏</p>
-                <p class="mb-6">ข้อมูลของคุณจะถูกบันทึกในระบบและช่วยให้น้องๆ ทุกคนได้เห็นภาพรวมคะแนน</p>
-                <button onclick="goToAnalysis()" class="btn btn-primary">
-                    <i class="fas fa-chart-line mr-2"></i> ดูผลวิเคราะห์คะแนน
-                </button>
-                <button onclick="resetForm()" class="btn btn-secondary ml-2">
-                    <i class="fas fa-plus mr-2"></i> ส่งข้อมูลเพิ่มเติม
-                </button>
-            </div>
-            
-            <!-- Dashboard Section -->
-            <div id="dashboard-section" class="hidden">
-                <div class="text-center max-w-6xl mx-auto">
-                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">ภาพรวมผลสำรวจคะแนน Pre-test</h2>
-                    
-                    <!-- Dashboard Filters -->
-                    <div id="dashboard-filters" class="flex flex-wrap justify-center gap-4 mb-6 bg-gray-50 p-4 rounded-lg shadow-sm">
-                        <div>
-                            <label for="dashboard-filter-curriculum" class="block text-sm font-medium text-gray-700 mb-1">ประเภทหลักสูตร</label>
-                            <select id="dashboard-filter-curriculum" class="input-field text-sm" onchange="renderFullDashboard()">
-                                <option value="all">ทั้งหมด</option>
-                                <option value="Special">ห้องเรียนพิเศษ</option>
-                                <option value="Normal">ห้องเรียนปกติ</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label for="dashboard-filter-grade" class="block text-sm font-medium text-gray-700 mb-1">ระดับชั้น</label>
-                            <select id="dashboard-filter-grade" class="input-field text-sm" onchange="renderFullDashboard()">
-                                <option value="all">ทั้งหมด</option>
-                                <option value="grade4">ประถมศึกษาปีที่ 4</option>
-                                <option value="grade5">ประถมศึกษาปีที่ 5</option>
-                                <option value="grade6">ประถมศึกษาปีที่ 6</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- สถิติสำคัญ -->
-                    <div class="dashboard-grid">
-                        <div class="dashboard-card text-center">
-                            <div class="text-gray-500 text-sm font-semibold mb-2">ผู้ตอบแบบสำรวจ (ที่กรองแล้ว)</div>
-                            <div class="stat-number text-blue-600" id="total-respondents">0</div>
-                            <div class="text-xs text-gray-500 mt-2">คน</div>
-                        </div>
-                        
-                        <div class="dashboard-card text-center">
-                            <div class="text-gray-500 text-sm font-semibold mb-2">คะแนนเฉลี่ย (ที่กรองแล้ว)</div>
-                            <div class="stat-number text-green-600" id="average-score">0.00</div>
-                            <div class="text-xs text-gray-500 mt-2">คะแนน</div>
-                        </div>
-                        
-                        <div class="dashboard-card text-center">
-                            <div class="text-gray-500 text-sm font-semibold mb-2">คะแนนสูงสุด (ที่กรองแล้ว)</div>
-                            <div class="stat-number text-purple-600" id="max-score">0.00</div>
-                            <div class="text-xs text-gray-500 mt-2">คะแนน</div>
-                        </div>
-                        
-                        <div class="dashboard-card text-center">
-                            <div class="text-gray-500 text-sm font-semibold mb-2">คะแนนต่ำสุด (ที่กรองแล้ว)</div>
-                            <div class="stat-number text-red-600" id="min-score">0.00</div>
-                            <div class="text-xs text-gray-500 mt-2">คะแนน</div>
-                        </div>
-                    </div>
-                    
-                    <!-- Loading Indicator for Dashboard -->
-                    <div id="dashboard-loading-indicator" class="text-center py-6 sm:py-8 hidden">
-                        <div class="loading-spinner mb-4"></div>
-                        <p class="text-gray-600">กำลังโหลดข้อมูลแดชบอร์ด...</p>
-                    </div>
-
-                    <!-- Dashboard Charts Container -->
-                    <div id="dashboard-charts-container" class="mt-6">
-                        <!-- กราฟจะถูกโหลดที่นี่โดย JavaScript -->
-                    </div>
-                    
-                    <!-- Navigator สำหรับหน้าอื่นๆ -->
-                    <div class="flex flex-wrap justify-center gap-4 mt-12">
-                        <button onclick="switchView('welcome')" class="btn btn-primary">
-                            <i class="fas fa-home mr-2"></i> กลับสู่หน้าหลัก
-                        </button>
-                        <button onclick="switchView('form')" class="btn btn-success">
-                            <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
-                        </button>
-                        <button onclick="switchView('results')" class="btn btn-secondary">
-                            <i class="fas fa-chart-bar mr-2"></i> ผลสำรวจ
-                        </button>
-                        <button onclick="switchView('analysis')" class="btn btn-warning">
-                            <i class="fas fa-calculator mr-2"></i> วิเคราะห์คะแนน
-                        </button>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- Form Section -->
-            <div id="form-section" class="hidden">
+            <!-- Form Section (เป็นหน้าแรก) -->
+            <div id="form-section">
                 <div class="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6 text-blue-800 text-sm sm:text-base">
                     <i class="fas fa-info-circle mr-2"></i>
                     <span>กรุณากรอกข้อมูลตามความเป็นจริงเพื่อประโยชน์ในการวิเคราะห์คะแนน</span>
@@ -1158,18 +934,241 @@
                 
                 <!-- Navigator สำหรับหน้าอื่นๆ -->
                 <div class="flex flex-wrap justify-center gap-4 mt-12">
-                    <button onclick="switchView('welcome')" class="btn btn-primary">
-                        <i class="fas fa-home mr-2"></i> กลับสู่หน้าหลัก
-                    </button>
-                    <button onclick="switchView('dashboard')" class="btn btn-secondary">
-                        <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
+                    <button onclick="switchView('analysis')" class="btn btn-warning">
+                        <i class="fas fa-calculator mr-2"></i> วิเคราะห์คะแนน
                     </button>
                     <button onclick="switchView('results')" class="btn btn-secondary">
                         <i class="fas fa-chart-bar mr-2"></i> ผลสำรวจ
                     </button>
+                    <button onclick="switchView('dashboard')" class="btn btn-secondary">
+                        <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
+                    </button>
+                    <button onclick="switchView('about')" class="btn btn-primary">
+                        <i class="fas fa-info-circle mr-2"></i> เกี่ยวกับระบบ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- About Section (หน้าเดิมคือ Welcome) -->
+            <div id="about-section" class="hidden">
+                <!-- Hero Section -->
+                <div class="relative bg-gradient-to-b from-indigo-50 via-white to-gray-50 pt-12 pb-16 lg:pt-16 lg:pb-20 rounded-xl mb-8">
+                    <div class="container mx-auto px-6 text-center">
+                        <!-- ปรับขนาดหัวข้อหลักให้ใหญ่ขึ้น -->
+                        <h2 class="mt-12 text-3xl lg:text-4xl font-bold text-gray-800">
+                            เกี่ยวกับระบบสำรวจคะแนน Pre-test
+                        </h2>
+                        
+                        <!-- ปรับขนาดข้อความย่อหน้าข้างล่างให้ใหญ่ขึ้น -->
+                        <p class="mt-6 text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+                            ผู้ปกครองโปรดกรอกข้อมูลตามความจริง เพื่อเป็นฐานข้อมูลสำหรับวิเคราะห์แนวโน้มผลการสอบ และเก็บเป็นสถิติ ข้อมูลนี้จะช่วยให้น้อง ๆ ที่กำลังเตรียมสอบเข้า ม.1 ได้เห็นแนวทางมากขึ้นค่ะ
+                        </p>
+                    </div>
+                </div>
+
+                <!-- ส่วนคุณสมบัติของระบบ (Introduction Section) -->
+                <section id="features" class="bg-white py-12 lg:py-16 rounded-xl">
+                    <div class="container mx-auto px-6">
+                        <h3 class="text-3xl font-bold text-center text-gray-900 mb-12">
+                            รายละเอียดระบบแบบสำรวจ
+                        </h3>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                            
+                            <!-- Feature Card 1 -->
+                            <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                                <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 rounded-full mx-auto mb-6">
+                                    <!-- ไอคอน: ระบบการเก็บข้อมูล -->
+                                    <svg class="w-8 h-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M19 16.9A7 7 0 0 1 5 16.9"/>
+                                        <path d="M12 3v14"/>
+                                        <path d="M12 20.9a7 7 0 0 1 0-13.8 7 7 0 0 1 0 13.8z"/>
+                                        <path d="M19 16.9a7 7 0 0 1 0-7.8"/>
+                                        <path d="M5 16.9a7 7 0 0 0 0-7.8"/>
+                                    </svg>
+                                </div>
+                                <h4 class="text-2xl font-semibold text-center text-indigo-800 mb-3">
+                                    เก็บข้อมูลเป็นระบบ
+                                </h4>
+                                <p class="text-gray-600 text-center">
+                                    เก็บข้อมูลคะแนน Pre-Test อย่างเป็นระบบ เพื่อความสะดวกในการค้นหาและประมวลผล
+                                </p>
+                            </div>
+
+                            <!-- Feature Card 2 -->
+                            <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                                <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 rounded-full mx-auto mb-6">
+                                    <!-- ไอคอน: การวิเคราะห์ -->
+                                    <svg class="w-8 h-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <path d="M21 12c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/>
+                                        <path d="M10 12c0 1.66-1.34 3-3 3s-3-1.34-3-3 1.34-3 3-3 3 1.34 3 3z"/>
+                                        <path d="M12 21c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>
+                                        <path d="M12 10c1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3 1.34 3 3 3z"/>
+                                    </svg>
+                                </div>
+                                <h4 class="text-2xl font-semibold text-center text-indigo-800 mb-3">
+                                    วิเคราะห์จุดแข็ง-จุดที่ควรเสริม
+                                </h4>
+                                <p class="text-gray-600 text-center">
+                                    สรุปผลรวมประเมินคะแนน และวิเคราะห์จุดแข็ง–จุดที่ควรเสริมรายวิชา เพื่อการพัฒนาที่ตรงจุด
+                                </p>
+                            </div>
+
+                            <!-- Feature Card 3 -->
+                            <div class="bg-gray-50 p-8 rounded-xl shadow-lg border border-gray-200 hover:shadow-xl transition-shadow duration-300">
+                                <div class="flex items-center justify-center h-16 w-16 bg-indigo-100 rounded-full mx-auto mb-6">
+                                    <!-- ไอคอน: Dashboard -->
+                                    <svg class="w-8 h-8 text-indigo-600" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                        <rect width="7" height="9" x="3" y="3" rx="1"/>
+                                        <rect width="7" height="5" x="14" y="3" rx="1"/>
+                                        <rect width="7" height="9" x="14" y="12" rx="1"/>
+                                        <rect width="7" height="5" x="3" y="16" rx="1"/>
+                                    </svg>
+                                </div>
+                                <h4 class="text-2xl font-semibold text-center text-indigo-800 mb-3">
+                                    Dashboard 
+                                </h4>
+                                <p class="text-gray-600 text-center">
+                                    แสดง Dashboard สรุปผลคะแนนแบบเรียลไทม์ เห็นภาพรวมและแนวโน้มคะแนนได้ทันที
+                                </p>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </section>
+                
+                <!-- Navigator สำหรับหน้าเกี่ยวกับ -->
+                <div class="flex flex-wrap justify-center gap-4 mt-12">
+                    <button onclick="switchView('form')" class="btn btn-success">
+                        <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
+                    </button>
                     <button onclick="switchView('analysis')" class="btn btn-warning">
                         <i class="fas fa-calculator mr-2"></i> วิเคราะห์คะแนน
                     </button>
+                    <button onclick="switchView('results')" class="btn btn-secondary">
+                        <i class="fas fa-chart-bar mr-2"></i> ผลสำรวจ
+                    </button>
+                    <button onclick="switchView('dashboard')" class="btn btn-primary">
+                        <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Connection Status -->
+            <div id="connection-status" class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6 text-yellow-800 rounded-r-lg hidden">
+                <div class="flex justify-between items-center">
+                    <div>
+                        <i class="fas fa-exclamation-triangle mr-2"></i>
+                        <span id="connection-status-text">กำลังตรวจสอบการเชื่อมต่อกับ Firebase...</span>
+                    </div>
+                    <button onclick="testConnection()" class="btn btn-secondary text-sm">
+                        <i class="fas fa-sync-alt mr-1"></i> ทดสอบการเชื่อมต่อ
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Tabs -->
+            <div class="flex flex-wrap justify-center border-b mb-6 space-x-2 sm:space-x-4 hidden" id="main-tabs">
+                <button id="tab-form" class="tab-button" onclick="switchView('form')"><i class="fas fa-edit mr-2"></i>กรอกข้อมูล</button>
+                <button id="tab-analysis" class="tab-button" onclick="switchView('analysis')"><i class="fas fa-calculator mr-2"></i>วิเคราะห์คะแนน</button>
+                <button id="tab-results" class="tab-button" onclick="switchView('results')"><i class="fas fa-chart-bar mr-2"></i>ดูผลสำรวจรวม</button>
+                <button id="tab-dashboard" class="tab-button" onclick="switchView('dashboard')"><i class="fas fa-chart-pie mr-2"></i>แดชบอร์ดและสรุปผล</button>
+                <button id="tab-admin" class="tab-button" onclick="switchView('admin-login')"><i class="fas fa-cog mr-2"></i>Admin</button>
+            </div>
+
+            <!-- Success Message -->
+            <div id="success-message" class="success-message hidden">
+                <i class="fas fa-check-circle text-3xl sm:text-4xl mb-4 text-green-600"></i>
+                <h3 class="text-xl sm:text-2xl font-bold mb-4">ส่งข้อมูลสำเร็จ! 🎉</h3>
+                <p class="mb-4 text-base sm:text-lg">ขอบคุณที่ร่วมแบ่งปันข้อมูลคะแนน 🙏</p>
+                <p class="mb-6">ข้อมูลของคุณจะถูกบันทึกในระบบและช่วยให้น้องๆ ทุกคนได้เห็นภาพรวมคะแนน</p>
+                <button onclick="goToAnalysis()" class="btn btn-primary">
+                    <i class="fas fa-chart-line mr-2"></i> ดูผลวิเคราะห์คะแนน
+                </button>
+                <button onclick="resetForm()" class="btn btn-secondary ml-2">
+                    <i class="fas fa-plus mr-2"></i> ส่งข้อมูลเพิ่มเติม
+                </button>
+            </div>
+            
+            <!-- Dashboard Section -->
+            <div id="dashboard-section" class="hidden">
+                <div class="text-center max-w-6xl mx-auto">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-4">ภาพรวมผลสำรวจคะแนน Pre-test</h2>
+                    
+                    <!-- Dashboard Filters -->
+                    <div id="dashboard-filters" class="flex flex-wrap justify-center gap-4 mb-6 bg-gray-50 p-4 rounded-lg shadow-sm">
+                        <div>
+                            <label for="dashboard-filter-curriculum" class="block text-sm font-medium text-gray-700 mb-1">ประเภทหลักสูตร</label>
+                            <select id="dashboard-filter-curriculum" class="input-field text-sm" onchange="renderFullDashboard()">
+                                <option value="all">ทั้งหมด</option>
+                                <option value="Special">ห้องเรียนพิเศษ</option>
+                                <option value="Normal">ห้องเรียนปกติ</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="dashboard-filter-grade" class="block text-sm font-medium text-gray-700 mb-1">ระดับชั้น</label>
+                            <select id="dashboard-filter-grade" class="input-field text-sm" onchange="renderFullDashboard()">
+                                <option value="all">ทั้งหมด</option>
+                                <option value="grade4">ประถมศึกษาปีที่ 4</option>
+                                <option value="grade5">ประถมศึกษาปีที่ 5</option>
+                                <option value="grade6">ประถมศึกษาปีที่ 6</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- สถิติสำคัญ -->
+                    <div class="dashboard-grid">
+                        <div class="dashboard-card text-center">
+                            <div class="text-gray-500 text-sm font-semibold mb-2">ผู้ตอบแบบสำรวจ (ที่กรองแล้ว)</div>
+                            <div class="stat-number text-blue-600" id="total-respondents">0</div>
+                            <div class="text-xs text-gray-500 mt-2">คน</div>
+                        </div>
+                        
+                        <div class="dashboard-card text-center">
+                            <div class="text-gray-500 text-sm font-semibold mb-2">คะแนนเฉลี่ย (ที่กรองแล้ว)</div>
+                            <div class="stat-number text-green-600" id="average-score">0.00</div>
+                            <div class="text-xs text-gray-500 mt-2">คะแนน</div>
+                        </div>
+                        
+                        <div class="dashboard-card text-center">
+                            <div class="text-gray-500 text-sm font-semibold mb-2">คะแนนสูงสุด (ที่กรองแล้ว)</div>
+                            <div class="stat-number text-purple-600" id="max-score">0.00</div>
+                            <div class="text-xs text-gray-500 mt-2">คะแนน</div>
+                        </div>
+                        
+                        <div class="dashboard-card text-center">
+                            <div class="text-gray-500 text-sm font-semibold mb-2">คะแนนต่ำสุด (ที่กรองแล้ว)</div>
+                            <div class="stat-number text-red-600" id="min-score">0.00</div>
+                            <div class="text-xs text-gray-500 mt-2">คะแนน</div>
+                        </div>
+                    </div>
+                    
+                    <!-- Loading Indicator for Dashboard -->
+                    <div id="dashboard-loading-indicator" class="text-center py-6 sm:py-8 hidden">
+                        <div class="loading-spinner mb-4"></div>
+                        <p class="text-gray-600">กำลังโหลดข้อมูลแดชบอร์ด...</p>
+                    </div>
+
+                    <!-- Dashboard Charts Container -->
+                    <div id="dashboard-charts-container" class="mt-6">
+                        <!-- กราฟจะถูกโหลดที่นี่โดย JavaScript -->
+                    </div>
+                    
+                    <!-- Navigator สำหรับหน้าอื่นๆ -->
+                    <div class="flex flex-wrap justify-center gap-4 mt-12">
+                        <button onclick="switchView('form')" class="btn btn-success">
+                            <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
+                        </button>
+                        <button onclick="switchView('analysis')" class="btn btn-warning">
+                            <i class="fas fa-calculator mr-2"></i> วิเคราะห์คะแนน
+                        </button>
+                        <button onclick="switchView('results')" class="btn btn-secondary">
+                            <i class="fas fa-chart-bar mr-2"></i> ผลสำรวจ
+                        </button>
+                        <button onclick="switchView('about')" class="btn btn-primary">
+                            <i class="fas fa-info-circle mr-2"></i> เกี่ยวกับระบบ
+                        </button>
+                    </div>
                 </div>
             </div>
             
@@ -1241,17 +1240,17 @@
                 
                 <!-- Navigator สำหรับหน้าอื่นๆ -->
                 <div class="flex flex-wrap justify-center gap-4 mt-12">
-                    <button onclick="switchView('welcome')" class="btn btn-primary">
-                        <i class="fas fa-home mr-2"></i> กลับสู่หน้าหลัก
-                    </button>
-                    <button onclick="switchView('dashboard')" class="btn btn-secondary">
-                        <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
-                    </button>
                     <button onclick="switchView('form')" class="btn btn-success">
                         <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
                     </button>
                     <button onclick="switchView('analysis')" class="btn btn-warning">
                         <i class="fas fa-calculator mr-2"></i> วิเคราะห์คะแนน
+                    </button>
+                    <button onclick="switchView('dashboard')" class="btn btn-primary">
+                        <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
+                    </button>
+                    <button onclick="switchView('about')" class="btn btn-primary">
+                        <i class="fas fa-info-circle mr-2"></i> เกี่ยวกับระบบ
                     </button>
                 </div>
             </div>
@@ -1297,8 +1296,7 @@
                         <p><strong>หมายเหตุ:</strong> การวิเคราะห์นี้เป็นการประเมินเบื้องต้นจากคะแนน Pre-test เท่านั้น 
                         และใช้ข้อมูลคะแนนสอบเข้าปี 2568 เป็นเกณฑ์เปรียบเทียบ</p>
                         <p>รายงานนี้สร้างโดยระบบสำรวจคะแนน Pre-test สตรีวิทยา 2569</p>
-                        <p>ออกแบบและสรุปผลโดย ลุ้นสอวอไปด้วยกันนะ</p>
-			<p>Line OPC : ครอบครัวยอดนารี❤️สตรีวิทยา</p>
+                        <p>ออกแบบและสรุปผลโดย Line OPC : ครอบครัวยอดนารี❤️สตรีวิทยา</p>
                     </div>
                     
                     <!-- ปุ่มสำหรับบันทึกผลวิเคราะห์ -->
@@ -1313,47 +1311,42 @@
                     
                     <!-- Navigator สำหรับหน้าอื่นๆ -->
                     <div class="flex flex-wrap justify-center gap-4 mt-12">
-                        <button onclick="switchView('welcome')" class="btn btn-primary">
-                            <i class="fas fa-home mr-2"></i> กลับสู่หน้าหลัก
-                        </button>
-                        <button onclick="switchView('dashboard')" class="btn btn-secondary">
-                            <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
-                        </button>
                         <button onclick="switchView('form')" class="btn btn-success">
                             <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
                         </button>
                         <button onclick="switchView('results')" class="btn btn-secondary">
                             <i class="fas fa-chart-bar mr-2"></i> ผลสำรวจ
                         </button>
+                        <button onclick="switchView('dashboard')" class="btn btn-primary">
+                            <i class="fas fa-chart-pie mr-2"></i> แดชบอร์ด
+                        </button>
+                        <button onclick="switchView('about')" class="btn btn-primary">
+                            <i class="fas fa-info-circle mr-2"></i> เกี่ยวกับระบบ
+                        </button>
                     </div>
                 </div>
             </div>
             
             <!-- Admin Login Section -->
-            <div id="admin-login-view" class="hidden">
-    <div class="p-8 max-w-sm mx-auto bg-white rounded-xl shadow-lg space-y-4">
-        <h3 class="text-xl font-bold text-center">ระบบจัดการข้อมูลสำหรับผู้ดูแลระบบ</h3>
-        
-        <label class="block">
-            <span class="text-gray-700">อีเมลผู้ดูแล:</span>
-            <input type="email" id="admin-email" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="กรอกอีเมล Admin" required>
-        </label>
-        
-        <label class="block">
-            <span class="text-gray-700">รหัสผ่าน:</span>
-            <input type="password" id="admin-password" class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50" placeholder="กรอกรหัสผ่าน" required>
-        </label>
-        
-        <button onclick="adminLogin()" class="w-full py-2 px-4 border border-transparent rounded-md shadow-sm text-sm font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500">
-            เข้าสู่ระบบผู้ดูแล
-        </button>
-    </div>
-</div>
+            <div id="admin-login-section" class="hidden">
+                <div class="text-center max-w-4xl mx-auto">
+                    <h2 class="text-xl sm:text-2xl font-bold text-gray-800 mb-6">ระบบจัดการข้อมูลสำหรับผู้ดูแลระบบ</h2>
+                    
+                    <div class="admin-login-form">
+                        <h3 class="text-lg font-bold mb-4">เข้าสู่ระบบผู้ดูแล</h3>
+                        <div class="mb-4">
+                            <label for="admin-password" class="block text-gray-700 font-semibold mb-2">รหัสผ่าน</label>
+                            <input type="password" id="admin-password" class="input-field" placeholder="กรอกรหัสผ่าน">
+                        </div>
+                        <button onclick="adminLogin()" class="btn btn-primary w-full">
+                            <i class="fas fa-sign-in-alt mr-2"></i> เข้าสู่ระบบ
+                        </button>
+                    </div>
                     
                     <!-- Navigator สำหรับหน้าอื่นๆ -->
                     <div class="flex flex-wrap justify-center gap-4 mt-12">
-                        <button onclick="switchView('welcome')" class="btn btn-primary">
-                            <i class="fas fa-home mr-2"></i> กลับสู่หน้าหลัก
+                        <button onclick="switchView('form')" class="btn btn-success">
+                            <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
                         </button>
                     </div>
                 </div>
@@ -1424,8 +1417,8 @@
                     
                     <!-- Navigator สำหรับหน้าอื่นๆ -->
                     <div class="flex flex-wrap justify-center gap-4 mt-12">
-                        <button onclick="switchView('welcome')" class="btn btn-primary">
-                            <i class="fas fa-home mr-2"></i> กลับสู่หน้าหลัก
+                        <button onclick="switchView('form')" class="btn btn-success">
+                            <i class="fas fa-edit mr-2"></i> กรอกข้อมูล
                         </button>
                     </div>
                 </div>
@@ -1455,31 +1448,26 @@
 
     <script>
         // 🔥 Firebase Configuration
-const firebaseConfig = {
-    apiKey: "AIzaSyBv3w4-aIsoqTpzzDIMxGf3lLWLmgLR9tU",
-    authDomain: "satriwit-pretest-2569-54188.firebaseapp.com",
-    projectId: "satriwit-pretest-2569-54188",
-    storageBucket: "satriwit-pretest-2569-54188.firebasestorage.app",
-    messagingSenderId: "802103482943",
-    appId: "1:802103482943:web:1b11db07ed0387122a768a",
-    measurementId: "G-5ZQC28R1TJ" // Optional
+        const firebaseConfig = {
+  apiKey: "AIzaSyAB8o6jY8GO6H2kbIu31hPsMTBc3T8pBQU",
+  authDomain: "y-sw-pretest-survey-project.firebaseapp.com",
+  projectId: "y-sw-pretest-survey-project",
+  storageBucket: "y-sw-pretest-survey-project.firebasestorage.app",
+  messagingSenderId: "168542314150",
+  appId: "1:168542314150:web:b9c6ffdee1029061b75e67"
 };
 
-// Initialize Firebase (ใช้รูปแบบเดิมเพื่อให้โค้ดที่เหลือทำงาน)
-const app = firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-// 🚨🚨 จุดแก้ไข: ย้ายการประกาศ auth ให้เหมือน db 🚨🚨
-// ประกาศ auth เป็นตัวแปร Global เพื่อให้ฟังก์ชัน adminLogin เข้าถึงได้
-const auth = firebase.auth(); 
+        // Initialize Firebase
+        const app = firebase.initializeApp(firebaseConfig);
+        const db = firebase.firestore();
 
-// ตัวแปรเก็บข้อมูล
-let allScores = [];
-let isDataFetched = false;
-let currentView = 'welcome';
-let chartInstances = {};
-let isAdminLoggedIn = false;
-
-       
+        // ตัวแปรเก็บข้อมูล
+        let allScores = [];
+        let isDataFetched = false;
+        let currentView = 'form'; // เปลี่ยนเป็นหน้าแรกเป็น form
+        let chartInstances = {};
+        let isAdminLoggedIn = false;
+        const ADMIN_PASSWORD = "satriwit2025"; // เปลี่ยนรหัสผ่านตามต้องการ
 
         // ตัวแปรเก็บข้อมูลการวิเคราะห์ล่าสุด
         let currentAnalysisData = null;
@@ -1543,32 +1531,16 @@ let isAdminLoggedIn = false;
             currentView = view;
             
             // ซ่อนทุกส่วน
-            document.getElementById('welcome-section').classList.add('hidden');
-            document.getElementById('dashboard-section').classList.add('hidden');
             document.getElementById('form-section').classList.add('hidden');
+            document.getElementById('about-section').classList.add('hidden');
+            document.getElementById('dashboard-section').classList.add('hidden');
             document.getElementById('results-section').classList.add('hidden');
             document.getElementById('analysis-section').classList.add('hidden');
-            
-            // 🚨 แก้ไข ID ตรงนี้ 🚨
-            document.getElementById('admin-login-view').classList.add('hidden'); 
-            
+            document.getElementById('admin-login-section').classList.add('hidden');
             document.getElementById('admin-panel-section').classList.add('hidden');
             
             // แสดงส่วนที่เลือก
-            // 🚨 การเรียกใช้ view-section มีปัญหากับ admin-login 🚨
-            // เนื่องจากคุณตั้งชื่อ HTML เป็น admin-login-view
-            // เราต้องใช้ตรรกะแบบละเอียดกว่า
-            // document.getElementById(`${view}-section`).classList.remove('hidden'); // ลบบรรทัดนี้ออก
-
-            
-            // 🎯 Logic การแสดงผลใหม่ (แทนที่บรรทัด document.getElementById(`${view}-section`).classList.remove('hidden');)
-             if (document.getElementById(`${view}-section`)) {
-                 document.getElementById(`${view}-section`).classList.remove('hidden');
-             } else if (document.getElementById(`${view}-view`)) { // ใช้สำหรับ admin-login-view
-                 document.getElementById(`${view}-view`).classList.remove('hidden');
-             } else if (view === 'admin-login') { // กรณี admin-login
-                 document.getElementById('admin-login-view').classList.remove('hidden');
-             }
+            document.getElementById(`${view}-section`).classList.remove('hidden');
             
             // อัพเดทสถานะ active ของปุ่ม Navigator
             document.querySelectorAll('.navigator-btn').forEach(btn => {
@@ -1576,17 +1548,17 @@ let isAdminLoggedIn = false;
             });
             
             // ตั้งค่าปุ่ม Navigator ที่ active
-            if (view === 'welcome') {
+            if (view === 'form') {
                 document.querySelector('.navigator-btn:nth-child(1)').classList.add('active');
-            } else if (view === 'dashboard') {
-                document.querySelector('.navigator-btn:nth-child(2)').classList.add('active');
-            } else if (view === 'form') {
-                document.querySelector('.navigator-btn:nth-child(3)').classList.add('active');
-            } else if (view === 'results') {
-                document.querySelector('.navigator-btn:nth-child(4)').classList.add('active');
             } else if (view === 'analysis') {
-                document.querySelector('.navigator-btn:nth-child(5)').classList.add('active');
+                document.querySelector('.navigator-btn:nth-child(2)').classList.add('active');
+            } else if (view === 'results') {
+                document.querySelector('.navigator-btn:nth-child(3)').classList.add('active');
+            } else if (view === 'dashboard') {
+                document.querySelector('.navigator-btn:nth-child(4)').classList.add('active');
             } else if (view === 'admin-login' || view === 'admin-panel') {
+                document.querySelector('.navigator-btn:nth-child(5)').classList.add('active');
+            } else if (view === 'about') {
                 document.querySelector('.navigator-btn:nth-child(6)').classList.add('active');
             }
             
@@ -1613,7 +1585,7 @@ let isAdminLoggedIn = false;
                     document.getElementById('admin-panel-section').classList.remove('hidden');
                     loadAdminData();
                 } else {
-                    document.getElementById('admin-login-view').classList.remove('hidden'); // 🚨 แก้ไข ID ตรงนี้ 🚨
+                    document.getElementById('admin-login-section').classList.remove('hidden');
                 }
             }
         };
@@ -2492,7 +2464,7 @@ let isAdminLoggedIn = false;
                 // บันทึกข้อมูลลง Local Storage อัตโนมัติ
                 saveFormDataToLocalStorage();
                 
-                // ไปยังหน้าวิเคราะห์คะแนนโดยตรง
+                // ไปยังหน้าวิเคราะห์คะแนนโดยตรง (แก้ไขจากเดิมที่ไปหน้า success)
                 switchView('analysis');
                 
                 showMessage('บันทึกข้อมูลสำเร็จ!', 'success');
@@ -3199,21 +3171,18 @@ let isAdminLoggedIn = false;
                     strengths.push('คณิตศาสตร์');
                 } else if (preTestScores.math <= (isSpecialForm ? 25 : 15)) {
                     weaknesses.push('คณิตศาสตร์');
-                    improvements.push('ทบทวนพื้นฐานให้แน่นปึ้กอีกครั้ง แล้วมาลุยฝึกโจทย์วิเคราะห์ที่ซับซ้อนเพิ่มเติม จับเวลาในการทำข้อสอบ จะช่วยให้แก้โจทย์ยากๆ ได้อย่างมั่นใจค่ะ');
                 }
                 
                 if (preTestScores.science >= 20) {
                     strengths.push('วิทยาศาสตร์');
                 } else if (preTestScores.science <= 12) {
                     weaknesses.push('วิทยาศาสตร์');
-                    improvements.push('ทบทวนเนื้อหาวิทยาศาสตร์และฝึกทำข้อสอบวิเคราะห์และการเชื่อมโยงเหตุผลทางวิทยาศาสตร์ แค่เพิ่มจุดนี้อีกนิดก็จะเก่งขึ้นมากค่ะ');
                 }
                 
                 if (preTestScores.english >= 20) {
                     strengths.push('ภาษาอังกฤษ');
                 } else if (preTestScores.english <= 12) {
                     weaknesses.push('ภาษาอังกฤษ');
-                    improvements.push('เพิ่มพูนคำศัพท์และฝึกการอ่าน comprehension');
                 }
             } else {
                 // วิเคราะห์ห้องเรียนปกติ (Math 30, Sci 30, Eng 30, Thai 30, Social 30)
@@ -3230,9 +3199,14 @@ let isAdminLoggedIn = false;
                         strengths.push(subject.name);
                     } else if (subject.score <= 12) { // เกณฑ์ 12/30
                         weaknesses.push(subject.name);
-                        improvements.push(`ทบทวนเนื้อหา${subject.name}และฝึกทำข้อสอบเพิ่มขึ้นอีกนิดนะคะ อย่าลืมลองทำแบบจับเวลาด้วยน้า เราจะสู้ไปด้วยกันค่ะ 💪😊`);
                     }
                 });
+            }
+            
+            // รวมข้อแนะนำเป็นข้อความเดียว
+            if (weaknesses.length > 0) {
+                const weakSubjects = weaknesses.join(', ');
+                improvements.push(`ทบทวนเนื้อหา${weakSubjects}และฝึกทำข้อสอบเพิ่มขึ้นอีกนิดนะคะ อย่าลืมลองทำแบบจับเวลาด้วยน้า เราจะสู้ไปด้วยกันค่ะ 💪😊`);
             }
             
             return { strengths, weaknesses, improvements };
@@ -3412,35 +3386,36 @@ let isAdminLoggedIn = false;
             // ตรวจสอบว่าเป็นฟอร์มห้องพิเศษ (เต็ม 50/30) หรือปกติ (เต็ม 30/30)
             const isSpecialForm = examType.includes('special');
             
-            // เกณฑ์คะแนนต่ำ/สูง สำหรับแต่ละหลักสูตร
+            // เกณฑ์คะแนนต่ำ/กลาง/สูง สำหรับแต่ละหลักสูตร
             const thresholds = {
                 'EP': {
-                    math: { low: isSpecialForm ? 25 : 15, high: isSpecialForm ? 40 : 25 },
-                    science: { low: 12, high: 20 },
-                    english: { low: 12, high: 20 }
+                    math: { low: isSpecialForm ? 25 : 15, medium: isSpecialForm ? 30 : 18, high: isSpecialForm ? 40 : 25 }, 
+                    science: { low: 12, medium: 16, high: 20 },
+                    english: { low: 12, medium: 16, high: 20 }
                 },
                 'GM': {
-                    math: { low: isSpecialForm ? 25 : 15, high: isSpecialForm ? 40 : 25 },
-                    science: { low: 12, high: 20 },
-                    english: { low: 12, high: 20 }
+                    math: { low: isSpecialForm ? 25 : 15, medium: isSpecialForm ? 30 : 18, high: isSpecialForm ? 40 : 25 },
+                    science: { low: 12, medium: 16, high: 20 },
+                    english: { low: 12, medium: 16, high: 20 }
                 },
                 'SMTE': {
-                    math: { low: isSpecialForm ? 25 : 15, high: isSpecialForm ? 40 : 25 },
-                    science: { low: 12, high: 20 }
+                    math: { low: isSpecialForm ? 25 : 15, medium: isSpecialForm ? 30 : 18, high: isSpecialForm ? 40 : 25 },
+                    science: { low: 12, medium: 16, high: 20 }
                 },
+                // Normal (Max 30) : High 20, Medium 16
                 'Normal_In': {
-                    math: { low: 12, high: 20 },
-                    science: { low: 12, high: 20 },
-                    english: { low: 12, high: 20 },
-                    thai: { low: 12, high: 20 },
-                    social: { low: 12, high: 20 }
+                    math: { low: 12, medium: 16, high: 20 },
+                    science: { low: 12, medium: 16, high: 20 },
+                    english: { low: 12, medium: 16, high: 20 },
+                    thai: { low: 12, medium: 16, high: 20 },
+                    social: { low: 12, medium: 16, high: 20 }
                 },
                 'Normal_Out': {
-                    math: { low: 12, high: 20 },
-                    science: { low: 12, high: 20 },
-                    english: { low: 12, high: 20 },
-                    thai: { low: 12, high: 20 },
-                    social: { low: 12, high: 20 }
+                    math: { low: 12, medium: 16, high: 20 },
+                    science: { low: 12, medium: 16, high: 20 },
+                    english: { low: 12, medium: 16, high: 20 },
+                    thai: { low: 12, medium: 16, high: 20 },
+                    social: { low: 12, medium: 16, high: 20 }
                 }
             };
             
@@ -3449,82 +3424,100 @@ let isAdminLoggedIn = false;
                 'EP': {
                     math: {
                         low: 'ทบทวนสูตรพื้นฐาน + ฝึกอ่านโจทย์และคำศัพท์เพิ่มเติม 📖🧮 แนะนำทำแบบฝึกหัดรายวันเพื่อเข้าใจการตีโจทย์',
+                        medium: 'คะแนนอยู่ในเกณฑ์ดี 👏 แนะนำให้เพิ่มความแม่นยำในการคำนวณและลองฝึกโจทย์วิเคราะห์ที่มีความซับซ้อนขึ้น เน้นการทำแบบจับเวลา เพื่อให้พร้อมสำหรับการสอบจริงค่ะ',
                         high: 'ทำโจทย์ประยุกต์และโจทย์แข่งขันระดับสูง 🏆 เพิ่มการฝึกคิดหลายขั้นตอนและเวลาในการทำโจทย์ อย่าลืมเสริมโจทย์ที่เป็นภาษาอังกฤษเพิ่มเติมนะคะ'
                     },
                     science: {
-                        low: 'ทบทวนหลักการและคำศัพท์วิทยาศาสตร์ 🔬 ลองวาด Mind Map แยกแนวคิดและคำศัพท์ อ่านทบทวนบ่อย ๆ เริ่มจากหัวข้อที่ยังไม่คล่อง เมื่อเห็นภาพรวมทั้งหมด ทำให้เข้าใจความเชื่อมโยง และจำได้แม่นขึ้นค่ะ 💛',
+                        low: 'ทบทวนหลักการและคำศัพท์วิทยาศาสตร์ 🔬 ลองวาด Mind Map แยกแนวคิดและคำศัพท์ อ่านทบทวนบ่อย ๆ เริ่มจากหัวข้อที่ยังไม่คล่อง เมื่อเห็นภาพรวมทั้งหมด ทำให้เข้าใจความเชื่อมโยง และจำได้แม่นยำขึ้นค่ะ 💛',
+                        medium: 'มีพื้นฐานที่ดีแล้วค่ะ 💪 แนะนำให้ลองฝึกทำโจทย์แนววิเคราะห์การทดลอง และโจทย์ที่มีการเชื่อมโยงความรู้หลายส่วนเข้าด้วยกัน จะช่วยให้เก่งขึ้นและพร้อมมากขึ้นค่ะ',
                         high: 'ยอดเยี่ยมมากค่ะ! เข้าใจหลักการทางวิทยาศาสตร์ได้เป็นอย่างดี แนะนำให้ลองต่อยอดด้วยโจทย์แนววิเคราะห์การทดลอง และฝึกทำโจทย์ภาษาอังกฤษเพิ่มเติมด้วยนะคะ'
                     },
                     english: {
                         low: 'เรามาปูพื้นฐานการอ่านให้แข็งแกร่งกันค่ะ! หัวใจสำคัญคือ ความสม่ำเสมอ ลองอ่านบทความภาษาอังกฤษสั้นๆ ทุกวัน แล้วจดคำศัพท์ใหม่ พร้อมฝึกสรุปใจความสำคัญ จะช่วยให้เข้าใจเรื่องราวและจับประเด็นได้ชัดเจนขึ้นค่ะ 💛',
+                        medium: 'พื้นฐานการอ่านดีแล้วค่ะ 📚 ลองฝึกทำแบบทดสอบ Reading Comprehension ที่มีความยาวและซับซ้อนขึ้น รวมถึงทบทวนไวยากรณ์ในส่วนที่ยังไม่แม่นยำ จะช่วยให้คะแนนดีขึ้นค่ะ',
                         high: 'น้องมีทักษะการวิเคราะห์ภาษาอังกฤษที่เฉียบคมมากค่ะ สามารถและควรอย่างยิ่งที่จะลองทำชุดทดสอบแนว Reasoning หรือ Critical Thinking ในระดับที่สูงขึ้น เพื่อเตรียมความพร้อมสู่สนามจริงค่ะ'
                     }
                 },
                 'GM': {
                     math: {
                         low: 'เรามาทบทวนพื้นฐานให้แน่นปึ้กอีกนิดนะคะ 😊 จากนั้นลองลุย โจทย์วิเคราะห์หลายขั้นตอน พร้อม จับเวลาทำโจทย์แบบ Speed Test จะช่วยให้แก้โจทย์ยากๆ ได้มั่นใจมากขึ้น และทำทันเวลาอย่างแน่นอนค่ะ 💛',
+                        medium: 'น้องมาถูกทางแล้วค่ะ! 👏 แนะนำให้เพิ่มความเร็วและความแม่นยำในการคำนวณ และลองทำโจทย์แนวสอวน. หรือโจทย์แข่งขันในระดับที่ใกล้เคียงกับสนาม GM จะช่วยให้คุ้นเคยกับความยากของข้อสอบค่ะ',
                         high: 'น้องมีศักยภาพสูงมากค่ะ! 🌟 แสดงให้เห็นทักษะด้านคณิตศาสตร์ที่ยอดเยี่ยม พร้อมที่จะไปต่อในระดับที่สูงขึ้นแล้ว แนะนำให้ลองหาโจทย์แนวแข่งขันมาฝึกฝีมือ จะช่วยพัฒนาความสามารถให้เก่งขึ้นอีก และพร้อมก้าวเข้าสู่ GM22 ได้เลยค่ะ🎓'
                     },
                     science: {
                         low: 'น้องลองฝึกฝนทักษะการวิเคราะห์ข้อมูล (จากตาราง/กราฟ) และการเชื่อมโยงเหตุผลทางวิทยาศาสตร์ เพียงเพิ่มจุดนี้อีกนิด ก็จะเก่งขึ้นและมั่นใจขึ้นมากเลยค่ะ 💡',
+                        medium: 'มีพื้นฐานที่ดีแล้วค่ะ 💪 แนะนำให้ลองฝึกทำโจทย์แนววิเคราะห์การทดลอง และโจทย์ที่มีการเชื่อมโยงความรู้หลายส่วนเข้าด้วยกัน จะช่วยให้เก่งขึ้นและพร้อมมากขึ้นค่ะ',
                         high: 'ยอดเยี่ยมมากค่ะ!🌟 น้องเข้าใจหลักการทางวิทยาศาสตร์ได้ดีมาก แนะนำให้ลองต่อยอดด้วยโจทย์วิเคราะห์การทดลอง หรือโจทย์เชิงลึกที่ต้องประยุกต์หลายๆ ความรู้เข้าด้วยกัน จะช่วยให้ความเข้าใจแน่นขึ้น และพร้อมเผชิญโจทย์ยากๆ ได้อย่างมั่นใจค่ะ 💡'
                     },
                     english: {
                         low: 'เรามาปูพื้นฐานการอ่านให้แข็งแกร่งกันค่ะ! หัวใจสำคัญคือ ความสม่ำเสมอ ลองอ่านบทความภาษาอังกฤษสั้นๆ ทุกวัน แล้วจดคำศัพท์ใหม่ พร้อมฝึกสรุปใจความสำคัญ จะช่วยให้เข้าใจเรื่องราวและจับประเด็นได้ชัดเจนขึ้นค่ะ 💛',
+                        medium: 'พื้นฐานการอ่านดีแล้วค่ะ 📚 ลองฝึกทำแบบทดสอบ Reading Comprehension ที่มีความยาวและซับซ้อนขึ้น รวมถึงทบทวนไวยากรณ์ในส่วนที่ยังไม่แม่นยำ จะช่วยให้คะแนนดีขึ้นค่ะ',
                         high: 'น้องมีทักษะการวิเคราะห์ภาษาอังกฤษที่ยอดเยี่ยมมากค่ะ🌟แนะนำให้น้องลองทำ ชุดทดสอบแนว Reasoning หรือ Critical Thinking ในระดับที่สูงขึ้นจะช่วยพัฒนาความสามารถให้เฉียบคมยิ่งขึ้น และเตรียมความพร้อมสู่สนามจริงได้อย่างมั่นใจค่ะ💡'
                     }
                 },
                 'SMTE': {
                     math: {
                         low: 'เรามาเพิ่มความเข้าใจที่มาของสูตรอีกนิดนะคะ😊ไม่ใช่แค่ท่องจำเท่านั้น แต่ลองฝึกคำนวณเป็นขั้นตอนอย่างแม่นยำ และจับเวลาในการทำข้อสอบ รับรองว่าน้องจะทำโจทย์ได้คล่องขึ้นและมั่นใจมากขึ้นค่ะ💡',
+                        medium: 'ทำได้ดีค่ะ! 👏 แนะนำให้ลองทำโจทย์คณิตประยุกต์และโจทย์เชิงวิเคราะห์เพิ่มขึ้น โดยเน้นความเข้าใจในหลักการทางวิทยาศาสตร์ที่ซ่อนอยู่ในโจทย์ จะช่วยให้พร้อมมากขึ้นค่ะ',
                         high: 'น้องทำได้ดีมากค่ะ!🌟น้องมีความเข้าใจและทักษะการคำนวณที่ยอดเยี่ยม แนะนำให้ลองต่อยอดด้วยโจทย์คณิตประยุกต์ หรือศึกษาเนื้อหาลึกขึ้นกว่าในระดับชั้นจะช่วยให้เก่งขึ้นและมั่นใจมากขึ้นค่ะ💡'
                     },
                     science: {
                         low: 'คะแนนส่วนนี้สามารถเก็บเพิ่มได้ไม่ยากค่ะ แนะนำให้ทบทวนเนื้อหาพื้นฐานให้แม่นยำ และฝึกทำโจทย์ที่ให้ข้อมูลหรือสถานการณ์เยอะ ๆ (โจทย์ยาว) จะช่วยให้เราจับประเด็นได้เร็วขึ้น และเพิ่มความมั่นใจเวลาทำข้อสอบค่ะ',
+                        medium: 'มีพื้นฐานวิทย์ที่ดีแล้วค่ะ 💪 แนะนำให้ลองฝึกทำโจทย์แนววิเคราะห์ข้อมูล ตาราง และกราฟ รวมถึงโจทย์ที่ต้องใช้การเชื่อมโยงหลักการ จะช่วยให้คะแนนดีขึ้นไปอีกค่ะ',
                         high: 'มีพื้นฐานวิทย์ที่ดีมากค่ะ แสดงว่ามีความเข้าใจในหลักการ แนะนำให้ท้าทายความสามารถต่อด้วยโจทย์แนวแข่งขันสสวท. TEDET ได้เลยค่ะ'
                     }
                 },
                 'Normal_In': {
                     math: {
                         low: 'ความพยายามอยู่ที่ไหน ความสำเร็จอยู่ที่นั่นค่ะ แนะนำให้ทบทวนสูตรพื้นฐานให้แม่นยำ และ ‘ฝึก’ ทำโจทย์ซ้ำๆ บ่อยๆ ให้เกิดความชำนาญ แค่นี้ก็เก่งขึ้นได้แล้วค่ะ',
+                        medium: 'มีความแม่นยำในการคำนวณที่ดีค่ะ 👏 แนะนำให้ฝึกทำโจทย์ปัญหา (โจทย์ประยุกต์) ที่มีความหลากหลายขึ้น และลองทำแบบจับเวลา จะช่วยให้ทำข้อสอบได้เร็วขึ้นค่ะ',
                         high: 'เยี่ยมเลยค่ะ! มีความแม่นยำในการคำนวณที่ดี แนะนำให้ลองฝึกโจทย์คำนวณประยุกต์ (โจทย์ปัญหา) ที่ท้าทายมากขึ้นได้เลยค่ะ'
                     },
                     science: {
                         low: 'วิชาวิทย์เริ่มจากความเข้าใจเป็นหลักค่ะ 🧪 ลองทบทวนหลักการพื้นฐานเพิ่มอีกนิดแล้วสรุปเป็นแผนภาพความคิด (Mind Map) 🌳 ในสไตล์น่ารักๆ ของเราเอง วิธีนี้จะช่วยให้น้องเห็นภาพรวมและเข้าใจว่าข้อไหนเชื่อมโยงกับข้อไหนได้ชัดเจนขึ้นค่ะ ✨',
+                        medium: 'เก่งมากค่ะ! มีความเข้าใจเนื้อหาแล้ว 💪 ลองฝึกทำโจทย์เชิงเหตุผลหรือโจทย์วิเคราะห์จากสถานการณ์ จะทำให้เก่งขึ้นและพร้อมมากขึ้นค่ะ',
                         high: 'เก่งมากเลยค่ะ! 🌟 แสดงว่ามีความเข้าใจเนื้อหาแล้ว ลองต่อยอดด้วยโจทย์เชิงเหตุผลหรือโจทย์วิเคราะห์ จะทำให้เก่งขึ้นไปอีกนะคะ 💪'
                     },
                     english: {
                         low: 'ค่อยๆ ไปทีละขั้นนะคะ แนะนำให้เริ่มจากสร้างคลังคำศัพท์พื้นฐานที่ต้องใช้บ่อยๆ และฝึกอ่านบทความสั้นๆ ให้คล่องก่อน พอเรามั่นใจขึ้น คะแนนก็จะตามมาเองค่ะ',
+                        medium: 'พื้นฐานภาษาอังกฤษดีแล้วค่ะ 👏 ลองต่อยอดด้วยบทอ่านที่ยาวขึ้น และลองศึกษาโครงสร้างไวยากรณ์ (Grammar) ที่ซับซ้อนขึ้นได้เลยค่ะ',
                         high: 'ทำได้ดีมากค่ะ พื้นฐานภาษาอังกฤษดีเลย แนะนำให้ต่อยอดด้วยบทอ่านที่ยาวขึ้น และลองศึกษาโครงสร้างไวยากรณ์ (Grammar) ที่ซับซ้อนขึ้นได้เลยค่ะ'
                     },
                     thai: {
                         low: 'น้องลองฝึกอ่านจับใจความและวิเคราะห์บทความ พร้อมฝึกตัดตัวเลือกที่ไม่เกี่ยวข้อง จะช่วยให้น้องทำคะแนนได้ดีขึ้นค่ะ',
+                        medium: 'มีทักษะการอ่านที่ดีค่ะ 👏 ลองฝึกวิเคราะห์บทความที่ยาวและซับซ้อนขึ้น เพื่อเพิ่มความรวดเร็วในการจับประเด็นค่ะ',
                         high: 'ยอดเยี่ยมค่ะ! น้องมีทักษะการอ่านที่ดี แนะนำให้ต่อยอดด้วยการฝึกอ่านบทวิเคราะห์หรือบทความที่ยาวและซับซ้อนขึ้นค่ะ'
                     },
                     social: {
                         low: 'วิชานี้เนื้อหาค่อนข้างเยอะ แต่เราสู้ได้แน่นอนค่ะ 💪✨ แนะนำให้อ่านสรุปเนื้อหาและเน้นทบทวนคำสำคัญ (‘Keywords’) ของโจทย์ ใช้วิธีตัดตัวเลือกช่วยให้จับประเด็นข้อสอบได้ง่ายขึ้นค่ะ และอย่าลืมติดตามข่าวสารสำคัญ ๆ ที่เกิดขึ้นในแต่ละปีกันด้วยนะคะ 📰🌟',
+                        medium: 'ความเข้าใจเนื้อหาอยู่ในเกณฑ์ดีค่ะ 👏 แนะนำให้ลองทำโจทย์วิเคราะห์สถานการณ์ปัจจุบัน และฝึกการเชื่อมโยงความรู้เข้ากับเหตุการณ์ต่าง ๆ ค่ะ',
                         high: 'ยอดเยี่ยมมากเลยค่ะ! 🌟 แสดงว่าน้องมีจุดแข็งชัดเจน คือความเข้าใจและการจดจำเนื้อหาได้แม่นยำ 💡 อย่าลืมติดตามข่าวสารสำคัญ ๆ ที่เกิดขึ้นในแต่ละปี เช่น สถานการณ์เศรษฐกิจ ปัญหาสิ่งแวดล้อม หรือเหตุการณ์การเมือง อย่างสม่ำเสมอนะคะ 📰✨'
                     }
                 },
                 'Normal_Out': {
-                   math: {
+                    math: {
                         low: 'ความพยายามอยู่ที่ไหน ความสำเร็จอยู่ที่นั่นค่ะ แนะนำให้ทบทวนสูตรพื้นฐานให้แม่นยำ และ ‘ฝึก’ ทำโจทย์ซ้ำๆ บ่อยๆ ให้เกิดความชำนาญ แค่นี้ก็เก่งขึ้นได้แล้วค่ะ',
+                        medium: 'มีความแม่นยำในการคำนวณที่ดีค่ะ 👏 แนะนำให้ฝึกทำโจทย์ปัญหา (โจทย์ประยุกต์) ที่มีความหลากหลายขึ้น และลองทำแบบจับเวลา จะช่วยให้ทำข้อสอบได้เร็วขึ้นค่ะ',
                         high: 'เยี่ยมเลยค่ะ! มีความแม่นยำในการคำนวณที่ดี แนะนำให้ลองฝึกโจทย์คำนวณประยุกต์ (โจทย์ปัญหา) ที่ท้าทายมากขึ้นได้เลยค่ะ'
                     },
                     science: {
                         low: 'วิชาวิทย์เริ่มจากความเข้าใจเป็นหลักค่ะ 🧪 ลองทบทวนหลักการพื้นฐานเพิ่มอีกนิดแล้วสรุปเป็นแผนภาพความคิด (Mind Map) 🌳 ในสไตล์น่ารักๆ ของเราเอง วิธีนี้จะช่วยให้น้องเห็นภาพรวมและเข้าใจว่าข้อไหนเชื่อมโยงกับข้อไหนได้ชัดเจนขึ้นค่ะ ✨',
+                        medium: 'เก่งมากค่ะ! มีความเข้าใจเนื้อหาแล้ว 💪 ลองฝึกทำโจทย์เชิงเหตุผลหรือโจทย์วิเคราะห์จากสถานการณ์ จะทำให้เก่งขึ้นและพร้อมมากขึ้นค่ะ',
                         high: 'เก่งมากเลยค่ะ! 🌟 แสดงว่ามีความเข้าใจเนื้อหาแล้ว ลองต่อยอดด้วยโจทย์เชิงเหตุผลหรือโจทย์วิเคราะห์ จะทำให้เก่งขึ้นไปอีกนะคะ 💪'
                     },
                     english: {
                         low: 'ค่อยๆ ไปทีละขั้นนะคะ แนะนำให้เริ่มจากสร้างคลังคำศัพท์พื้นฐานที่ต้องใช้บ่อยๆ และฝึกอ่านบทความสั้นๆ ให้คล่องก่อน พอเรามั่นใจขึ้น คะแนนก็จะตามมาเองค่ะ',
+                        medium: 'พื้นฐานภาษาอังกฤษดีแล้วค่ะ 👏 ลองต่อยอดด้วยบทอ่านที่ยาวขึ้น และลองศึกษาโครงสร้างไวยากรณ์ (Grammar) ที่ซับซ้อนขึ้นได้เลยค่ะ',
                         high: 'ทำได้ดีมากค่ะ พื้นฐานภาษาอังกฤษดีเลย แนะนำให้ต่อยอดด้วยบทอ่านที่ยาวขึ้น และลองศึกษาโครงสร้างไวยากรณ์ (Grammar) ที่ซับซ้อนขึ้นได้เลยค่ะ'
                     },
                     thai: {
                         low: 'น้องลองฝึกอ่านจับใจความและวิเคราะห์บทความ พร้อมฝึกตัดตัวเลือกที่ไม่เกี่ยวข้อง จะช่วยให้น้องทำคะแนนได้ดีขึ้นค่ะ',
+                        medium: 'มีทักษะการอ่านที่ดีค่ะ 👏 ลองฝึกวิเคราะห์บทความที่ยาวและซับซ้อนขึ้น เพื่อเพิ่มความรวดเร็วในการจับประเด็นค่ะ',
                         high: 'ยอดเยี่ยมค่ะ! น้องมีทักษะการอ่านที่ดี แนะนำให้ต่อยอดด้วยการฝึกอ่านบทวิเคราะห์หรือบทความที่ยาวและซับซ้อนขึ้นค่ะ'
                     },
                     social: {
                         low: 'วิชานี้เนื้อหาค่อนข้างเยอะ แต่เราสู้ได้แน่นอนค่ะ 💪✨ แนะนำให้อ่านสรุปเนื้อหาและเน้นทบทวนคำสำคัญ (‘Keywords’) ของโจทย์ ใช้วิธีตัดตัวเลือกช่วยให้จับประเด็นข้อสอบได้ง่ายขึ้นค่ะ และอย่าลืมติดตามข่าวสารสำคัญ ๆ ที่เกิดขึ้นในแต่ละปีกันด้วยนะคะ 📰🌟',
+                        medium: 'ความเข้าใจเนื้อหาอยู่ในเกณฑ์ดีค่ะ 👏 แนะนำให้ลองทำโจทย์วิเคราะห์สถานการณ์ปัจจุบัน และฝึกการเชื่อมโยงความรู้เข้ากับเหตุการณ์ต่าง ๆ ค่ะ',
                         high: 'ยอดเยี่ยมมากเลยค่ะ! 🌟 แสดงว่าน้องมีจุดแข็งชัดเจน คือความเข้าใจและการจดจำเนื้อหาได้แม่นยำ 💡 อย่าลืมติดตามข่าวสารสำคัญ ๆ ที่เกิดขึ้นในแต่ละปี เช่น สถานการณ์เศรษฐกิจ ปัญหาสิ่งแวดล้อม หรือเหตุการณ์การเมือง อย่างสม่ำเสมอนะคะ 📰✨'
                     }
                 }
@@ -3560,22 +3553,27 @@ let isAdminLoggedIn = false;
                                   subject === 'thai' ? 'ภาษาไทย' : 'สังคมศึกษา';
                 
                 const score = preTestScores[subjectKey] || 0;
-                const threshold = currentThresholds[subject] || { low: 0, high: 0 };
+                const threshold = currentThresholds[subject] || { low: 0, medium: 0, high: 0 };
+                
+                // กำหนดคำแนะนำตามระดับคะแนน
+                let advice = '';
+                
+                if (score < threshold.medium) {
+                    advice = currentAdvice[subject].low;
+                } else if (score < threshold.high) {
+                    advice = currentAdvice[subject].medium;
+                } else {
+                    advice = currentAdvice[subject].high;
+                }
                 
                 // กำหนดคลาสสำหรับแถวตามคะแนน
                 let rowClass = '';
-                let advice = '';
-                
-                if (score <= threshold.low) {
+                if (score < threshold.medium) {
                     rowClass = 'bg-red-50';
-                    advice = currentAdvice[subject].low;
-                } else if (score >= threshold.high) {
-                    rowClass = 'bg-green-50';
-                    advice = currentAdvice[subject].high;
-                } else {
+                } else if (score < threshold.high) {
                     rowClass = 'bg-yellow-50';
-                    // สำหรับคะแนนระดับกลาง ให้ใช้คำแนะนำเดียวกับต่อยอด
-                    advice = currentAdvice[subject].high || currentAdvice[subject].low;
+                } else {
+                    rowClass = 'bg-green-50';
                 }
                 
                 tableHTML += `
@@ -4001,39 +3999,25 @@ const summaryEl = activeTabContent.querySelector('.summary-text'); // ✅ เร
         // --- Admin Functions ---
 
         // ฟังก์ชันล็อกอิน Admin
-       window.adminLogin = async () => {
-    // ดึงค่าจากช่องกรอก
-    const email = document.getElementById('admin-email').value; 
-    const password = document.getElementById('admin-password').value;
-    
-    try {
-        // ใช้ Firebase Authentication ในการตรวจสอบ
-        await auth.signInWithEmailAndPassword(email, password); 
-        
-        isAdminLoggedIn = true;
-        showMessage('เข้าสู่ระบบผู้ดูแลสำเร็จ', 'success');
-        switchView('admin-panel');
-        
-    } catch (error) {
-        // หากเกิดข้อผิดพลาดในการตรวจสอบสิทธิ์ (เช่น รหัสผ่านผิด)
-        console.error('Login error:', error);
-        showMessage('อีเมลหรือรหัสผ่านไม่ถูกต้อง โปรดตรวจสอบอีกครั้ง', 'error');
-        document.getElementById('admin-password').value = ''; 
-    }
-};
+        window.adminLogin = () => {
+            const password = document.getElementById('admin-password').value;
+            
+            if (password === ADMIN_PASSWORD) {
+                isAdminLoggedIn = true;
+                showMessage('เข้าสู่ระบบผู้ดูแลสำเร็จ', 'success');
+                switchView('admin-panel');
+            } else {
+                showMessage('รหัสผ่านไม่ถูกต้อง', 'error');
+                document.getElementById('admin-password').value = '';
+            }
+        };
 
         // ฟังก์ชันออกจากระบบ Admin
-        window.adminLogout = async () => {
-    try {
-        await auth.signOut();
-        isAdminLoggedIn = false;
-        showMessage('ออกจากระบบผู้ดูแลเรียบร้อย', 'info');
-        switchView('dashboard');
-    } catch (error) {
-         console.error('Error during admin logout:', error);
-         showMessage('ไม่สามารถออกจากระบบได้: ' + error.message, 'error');
-    }
-};
+        window.adminLogout = () => {
+            isAdminLoggedIn = false;
+            showMessage('ออกจากระบบผู้ดูแลเรียบร้อย', 'info');
+            switchView('dashboard');
+        };
 
         // ฟังก์ชันโหลดข้อมูลสำหรับ Admin
         async function loadAdminData() {
@@ -4300,8 +4284,8 @@ const summaryEl = activeTabContent.querySelector('.summary-text'); // ✅ เร
 
         // ตั้งค่าเริ่มต้นเมื่อโหลดหน้าเว็บ
         document.addEventListener('DOMContentLoaded', function() {
-            // เริ่มต้นด้วยหน้า Welcome
-            switchView('welcome');
+            // เริ่มต้นด้วยหน้า Form (หน้าแรก)
+            switchView('form');
             testConnection(); // ทดสอบการเชื่อมต่อเมื่อโหลดหน้า
             
             // โหลดข้อมูลฟอร์มจาก Local Storage ถ้ามี
